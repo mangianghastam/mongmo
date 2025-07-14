@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Là thật hay mơ</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #2e2e47, #4e4e6f);
+      color: #f2f2f2;
+      font-family: 'Georgia', serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.07);
+      backdrop-filter: blur(12px);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+      text-align: center;
+      max-width: 700px;
+      animation: fadeIn 1.5s ease;
+    }
+
+    .emoji {
+      font-size: 2.5rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin: 10px 0;
+    }
+
+    .line {
+      font-size: 1.2em;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeText 1s forwards;
+    }
+
+    .button-group {
+      margin-top: 20px;
+    }
+
+    button {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid #ccc;
+      color: #f2f2f2;
+      padding: 10px 20px;
+      margin: 8px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeText {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="emoji">🍃</div>
+    <h1>Mộng mơ</h1>
+    <p><em>“Cơn mơ bước ra từ một bài thơ chưa viết xong”</em></p>
+
+    <div class="button-group" id="buttons">
+      <button onclick="showMood('đang ngồi viết thơ bằng nước mắt')">📝 Viết thơ bằng nước mắt</button>
+      <button onclick="showMood('vừa tranh luận với con bướm về triết học')">🦋 Tranh luận với con bướm</button>
+      <button onclick="showMood('nhầm bạn là nhân vật tiểu thuyết')">📖 Nhầm bạn là nhân vật tiểu thuyết</button>
+      <button onclick="showMood('tự thấy mình là đám mây lạc loài')">☁️ Là đám mây lạc loài</button>
+      <button onclick="showMood('đang tìm đường về cõi mộng')">🌙 Tìm đường về cõi mộng</button>
+    </div>
+
+    <div class="line" id="moodLine"></div>
+    <div class="line" id="responseLine"></div>
+    <div class="line" id="noteLine"></div>
+  </div>
+
+  <script>
+    function showMood(mood) {
+      const responses = {
+        "đang ngồi viết thơ bằng nước mắt": "📜 Xin lỗi... chữ đang nhòe, có thể là do cảm xúc... hoặc do tôi đổ trà.",
+        "vừa tranh luận với con bướm về triết học": "🦋 Tôi thua. Nó bảo: 'Tồn tại là một sự mỉm cười nhẹ'.",
+        "nhầm bạn là nhân vật tiểu thuyết": "📖 Ồ... tôi tưởng bạn là nhân vật phụ trong chương buồn thứ bảy.",
+        "tự thấy mình là đám mây lạc loài": "☁️ Bay mãi mà chẳng đến đâu, giống như khi tra Google?",
+        "đang tìm đường về cõi mộng": "🌙 Tôi ở đây, nhưng tâm hồn đang nằm trên nóc nhà ngắm trăng."
+      };
+
+      document.getElementById("buttons").style.display = "none";
+
+      document.getElementById("moodLine").style.opacity = 0;
+      document.getElementById("responseLine").style.opacity = 0;
+      document.getElementById("noteLine").style.opacity = 0;
+
+      setTimeout(() => {
+        document.getElementById("moodLine").textContent = `🌀 Hôm nay tôi: ${mood}`;
+        document.getElementById("moodLine").style.opacity = 1;
+
+        setTimeout(() => {
+          document.getElementById("responseLine").textContent = responses[mood];
+          document.getElementById("responseLine").style.opacity = 1;
+        }, 1200);
+
+        setTimeout(() => {
+          document.getElementById("noteLine").textContent = "📌 Ghi chú: 'Câu trả lời đúng không quan trọng bằng cách bạn cảm nhận nó.'";
+          document.getElementById("noteLine").style.opacity = 1;
+        }, 2500);
+      }, 300);
+    }
+  </script>
+</body>
+</html>
